@@ -139,19 +139,20 @@
                     const gpsLocation = data.name;
                     const temp = data.main.temp;
                     const feelLike = Math.round(data.main.feels_like);
-                    cityDisplay.innerText=`You are currently at ${gpsLocation}, You feel ${feelLike} °C`;
+                    cityDisplay.innerText=`You are currently in ${gpsLocation},
+                    You feel ${feelLike} °C`;
                     
                     if(temp<=20 && rainChance>=50){
-                        Advice.innerText="Wear a jacket and bring raincoat.";
+                        Advice.innerText="Wear a jacket and bring a raincoat.";
                         card_image.style.backgroundImage = "url('src/jacket-raincoat.webp')";
                     } else if(temp>20 && rainChance>=50) {
-                        Advice.innerText="No need to wear a jacket but bring raincoat.";
+                        Advice.innerText="No need to wear a jacket but bring a raincoat.";
                         card_image.style.backgroundImage = "url('src/no-jacket-raincoat.webp')";
                     } else if (temp<=20 && rainChance<50) {
-                        Advice.innerText="Wear a jacket, no need the raincoat";
+                        Advice.innerText="Wear a jacket, no need a raincoat";
                         card_image.style.backgroundImage = "url('src/jacket-no-raincoat.webp')";
                     } else if (temp>20 && rainChance<50){
-                        Advice.innerText="Perfect day, no need either jacket or raincoat";
+                        Advice.innerText="Perfect day, no need for either a jacket or a raincoat";
                         card_image.style.backgroundImage = "url('src/no-jacket-no-raincoat.webp')";
                     }
 
