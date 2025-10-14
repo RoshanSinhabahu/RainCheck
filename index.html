@@ -70,13 +70,14 @@
             display:none;
             background-color:#ff00006a;
             width:fit-content;
-            padding:5px;
             border-radius:50px;
             font-weight:500;
             text-align:center;
             justify-content:center;
             align-items:center;
             gap:5px;
+            margin-top:10px;
+            padding:5px 10px 5px 10px;
         }
         .warning-mark{
             color:rgb(255, 255, 255);
@@ -91,7 +92,7 @@
                     <div id="cityDisplay" class="cityName text-white d-flex justify-content-center align-items-center">Hello</div>
                     <div id="Advice" class="advice text-white d-flex justify-content-center align-items-center">Have a great one!</div>
                 </div>
-                <div class="warning-field text-white"><i class="warning-mark bi-snow"></i> Snow warning !</div>
+                <div id="snow-warning" class="warning-field text-white"><i class="warning-mark bi-snow"></i> Snow warning !</div>
             </div>
             <button class="locationButton text-white" onclick="getAdvice()"><i class="bi-geo-alt"></i> Click Here</button>
         </div>
@@ -104,8 +105,7 @@
     const cityDisplay = document.getElementById('cityDisplay');
     const Advice = document.getElementById('Advice');
     const card_image = document.getElementById('frame');
-
-    
+    const snow_warning = document.getElementById('snow-warning');
 
     async function getAdvice(){
         if(navigator.geolocation){
@@ -119,8 +119,11 @@
                     const data = await response.json();
 
                     const Metroresponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=precipitation_probability_max,snowfall_sum&timezone=auto`);
-                    const rainData = await Metroresponse.json();
-                    const rainChance = rainData.daily.precipitation_probability_max[0];
+                    const metroData = await Metroresponse.json();
+                    const rainChance = metroData.daily.precipitation_probability_max[0];
+                    const snowChance = metroData.daily.snowfall_sum[0];
+
+                    console.log(snowChance);
                     
                     const gpsLocation = data.name;
                     const temp = data.main.temp;
@@ -141,6 +144,11 @@
                         card_image.style.backgroundImage = "url('src/no-jacket-no-raincoat.webp')";
                     }
 
+                    if(snowChance>=40){
+                        snow_warning.style.display = "flex";
+                    } else {
+                        snow_warning.style.display = "none";
+                    }
                 
                 },
                 (error) => {
