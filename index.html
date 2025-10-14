@@ -64,7 +64,7 @@
             border:7px solid rgba(157, 209, 255, 0.542);
         }
         .locationButton:hover{
-            background-color:rgba(255, 255, 255, 0.326);
+            background-color:rgba(0, 0, 0, 0.528);
         }
         .locationButton:active{
             background-color:rgba(0, 0, 0, 0.179);
@@ -86,6 +86,9 @@
             color:rgb(255, 255, 255);
             font-size:1.5rem;
         }
+        .loading{
+            display:none;
+        }
     </style>
 </head>
 <body>
@@ -96,6 +99,9 @@
                     <div id="Advice" class="advice text-white d-flex justify-content-center align-items-center">Have a great one!</div>
                 </div>
                 <div id="snow-warning" class="warning-field text-white"><i class="warning-mark bi-snow"></i> Snow warning !</div>
+            </div>
+            <div id="loading">
+                <img class="loading" src="src/loading.gif" alt="Loading..." />
             </div>
             <button class="locationButton text-white" onclick="getAdvice()"><i class="bi-geo-alt"></i> Click Here</button>
         </div>
@@ -109,8 +115,10 @@
     const Advice = document.getElementById('Advice');
     const card_image = document.getElementById('frame');
     const snow_warning = document.getElementById('snow-warning');
+    const loading = document.getElementById("loading");
 
     async function getAdvice(){
+        loading.style.display = "flex";
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(
                 async (position) => {
@@ -125,8 +133,6 @@
                     const metroData = await Metroresponse.json();
                     const rainChance = metroData.daily.precipitation_probability_max[0];
                     const snowChance = metroData.daily.snowfall_sum[0];
-
-                    console.log(snowChance);
                     
                     const gpsLocation = data.name;
                     const temp = data.main.temp;
