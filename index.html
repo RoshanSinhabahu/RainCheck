@@ -144,16 +144,16 @@
                     You feel ${feelLike} °C`;
                     
                     if(temp<=20 && rainChance>=50){
-                        Advice.innerText="Wear a jacket and bring a raincoat.";
+                        Advice.innerText="Wear a jersey and bring a raincoat.";
                         card_image.style.backgroundImage = "url('src/jacket-raincoat.webp')";
                     } else if(temp>20 && rainChance>=50) {
-                        Advice.innerText="No need to wear a jacket but bring a raincoat.";
+                        Advice.innerText="No need to wear a jersey but bring a raincoat.";
                         card_image.style.backgroundImage = "url('src/no-jacket-raincoat.webp')";
                     } else if (temp<=20 && rainChance<50) {
-                        Advice.innerText="Wear a jacket, no need a raincoat";
+                        Advice.innerText="Wear a jersey, no need a raincoat";
                         card_image.style.backgroundImage = "url('src/jacket-no-raincoat.webp')";
                     } else if (temp>20 && rainChance<50){
-                        Advice.innerText="Perfect day, no need for either a jacket or a raincoat";
+                        Advice.innerText="Perfect day, no need for either a jersey or a raincoat";
                         card_image.style.backgroundImage = "url('src/no-jacket-no-raincoat.webp')";
                     }
 
