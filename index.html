@@ -31,7 +31,6 @@
             height:350px;
             flex-direction:column;
             gap:30px;
-            background-image:url('src/opening.webp');
             background-repeat:no-repeat;
             background-size:cover;
             box-shadow: 0 0px 30px rgba(0, 0, 0, 0.274);
@@ -94,7 +93,7 @@
         }
     </style>
 </head>
-<body>
+<body id="_body">
         <div class="_container d-flex justify-content-center align-items-center vh-100">
             <div id="frame" class="frame d-flex align-items-center">
                 <div class="text-field">
@@ -119,6 +118,15 @@
     const card_image = document.getElementById('frame');
     const snow_warning = document.getElementById('snow-warning');
     const loading = document.getElementById("loading");
+    const _body = document.getElementById("_body");
+    const no_j_no_r = ['url(src/no_j_no_r/img1.webp)','url(src/no_j_no_r/img2.webp)','url(src/no_j_no_r/img3.webp)','url(src/no_j_no_r/img4.webp)'];
+    const j_no_r = ['url(src/j_no_r/img1.webp)'];
+    const no_j_r = ['url(src/no_j_r/img1.webp)','url(src/no_j_r/img2.webp)','url(src/no_j_r/img3.webp)','url(src/no_j_r/img4.webp)'];
+    const j_r = ['url(src/j_r/img1.webp)','url(src/j_r/img2.webp)'];
+
+    const imgIndex = Math.floor(Math.random() * no_j_no_r.length);
+    card_image.style.backgroundImage = no_j_no_r[imgIndex];
+    _body.style.backgroundImage = no_j_no_r[imgIndex];
 
     async function getAdvice(){
         loading.style.display = "flex";
@@ -145,16 +153,24 @@
                     
                     if(temp<=20 && rainChance>=50){
                         Advice.innerText="Wear a jersey and bring a raincoat.";
-                        card_image.style.backgroundImage = "url('src/jacket-raincoat.webp')";
+                        const imgIndex  =Math.floor(Math.random()*j_r.length);
+                        card_image.style.backgroundImage = j_r[imgIndex];
+                        _body.style.backgroundImage = j_r[imgIndex];
                     } else if(temp>20 && rainChance>=50) {
                         Advice.innerText="No need to wear a jersey but bring a raincoat.";
-                        card_image.style.backgroundImage = "url('src/no-jacket-raincoat.webp')";
+                        const imgIndex  =Math.floor(Math.random()*no_j_r.length);
+                        card_image.style.backgroundImage = no_j_r[imgIndex];
+                        _body.style.backgroundImage = no_j_r[imgIndex];
                     } else if (temp<=20 && rainChance<50) {
                         Advice.innerText="Wear a jersey, no need a raincoat.";
-                        card_image.style.backgroundImage = "url('src/jacket-no-raincoat.webp')";
+                        const imgIndex  =Math.floor(Math.random()*j_no_r.length);
+                        card_image.style.backgroundImage = j_no_r[imgIndex];
+                        _body.style.backgroundImage = j_no_r[imgIndex];
                     } else if (temp>20 && rainChance<50){
                         Advice.innerText="Perfect day, no need for either a jersey or a raincoat.";
-                        card_image.style.backgroundImage = "url('src/no-jacket-no-raincoat.webp')";
+                        const imgIndex  =Math.floor(Math.random()*j_no_r.length);
+                        card_image.style.backgroundImage = no_j_no_r[imgIndex];
+                        _body.style.backgroundImage = no_j_no_r[imgIndex];
                     }
 
                     if(snowChance>=40){
