@@ -28,3 +28,8 @@ This project focuses on delivering a smooth and minimal user experience with sim
 - **OpenWeatherMap API**
 - **Metro Weather API**
 
+*🤝 Contributions
+Suggestions, improvements, or just messing around with the code? Feel free to open a pull request or an issue!*
+
+*📃 License
+MIT License – You are free to use, modify, and distribute this project.*
